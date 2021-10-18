@@ -1,1 +1,2 @@
-
+yo = "yo"
+print(yo)
