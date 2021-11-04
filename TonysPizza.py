@@ -38,11 +38,10 @@ menuText.place(x=5, y=140)
 quantityText = Label(root, text="Quantity", font=underlineFont, bg="#ffe599")
 quantityText.place(x=240,y=140)
 
-cheeseText = Label(root, text="1.          Cheese", font=pageFont, bg="#ffe599")
-cheeseText.place(x=18,y=160)
-
-pepperoniText = Label(root, text="2.          Pepperoni", font=pageFont, bg="#ffe599")
-pepperoniText.place(x=18,y=190)
+for loop in range(0,12):
+    pizzaVar = menuList[loop]
+    pizzaText = Label(root, text=str(loop+1)+".          "+pizzaVar, font=pageFont, bg="#ffe599")
+    pizzaText.place(x=18, y=(loop*30 + 160))
 
 
 #findInvalids()
