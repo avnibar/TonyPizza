@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter.font import Font
 from datetime import datetime, timedelta
+import os
+os.chdir('//internal.glendowie-college.school.nz/users/Home/Students/18222/Documents/prg python/12 PRG Avni')
 
 root = Tk()
 root.title("Tony's Pizza Order Form")
@@ -49,7 +51,7 @@ for loop in range(0,12):
     pizzaText.place(x=18, y=(loop*30 + 160))
 
 
-shippingText = Label(root, text="Shipping Method:", font=pageFont, bg="#ffe599")
+shippingText = Label(root, text="Order Type:", font=pageFont, bg="#ffe599")
 shippingText.place(x=340,y=200)
 
 cInfoText = Label(root, text="Customer Info:", font=pageFont, bg="#ffe599")
@@ -114,6 +116,10 @@ addressEntry.place(x=500,y=340)
 phoneEntry = Entry(root, borderwidth=3, width=23)
 phoneEntry.place(x=500,y=390)
 
+logoFile = PhotoImage(file="pizzaLogo.png")
+logoInput = Label(root, image=logoFile, bg="#ffe599")
+logoInput.place(x=460,y=20)
+
 def clearFields():
     entry1.delete(0, END)
     entry1.insert(0, 0)
@@ -139,6 +145,12 @@ def clearFields():
     entry11.insert(0, 0)
     entry12.delete(0, END)
     entry12.insert(0, 0)
+    nameEntry.delete(0, END)
+    orderType.set("")
+    addressEntry.delete(0, END)
+    addressEntry.insert(0, "")
+    phoneEntry.delete(0, END)
+    phoneEntry.insert(0, "")
     return
 
 def close():
@@ -146,7 +158,150 @@ def close():
     return
 
 def createInvoice():
-    
+    root2=Toplevel(root)
+    root2.title("Tony's Pizza Customer Order")
+    root2.configure(bg="#ffe599")
+    root2.geometry("590x530")
+
+    mainTitle = Label(root2, text="Tony's Pizza Company", font=titleFont, bg="#ffe599")
+    mainTitle.place(x=72,y=0)
+    subTitle = Label(root2, text="Processed Customer Order", font=titleFont, bg="#ffe599")
+    subTitle.place(x=45,y=35)
+    logoInput = Label(root2, image=logoFile, bg="#ffe599")
+    logoInput.place(x=390,y=0)
+
+    dateText = Label(root2, text="Date:",font=pageFont,bg="#ffe599")
+    dateText.place(x=30,y=100)
+    invDate = datetime.now()
+    date = Label(root2, text=invDate.strftime("%d/%m/%y"), font=pageFont, bg="#ffe599")
+    date.place(x=185,y=100)
+    customerNameText = Label(root2, text="Customer Name:",font=pageFont,bg="#ffe599")
+    customerNameText.place(x=30,y=130)
+    customerName = Label(root2, text=nameEntry.get(), font=pageFont, bg="#ffe599")
+    customerName.place(x=185,y=130)
+    shippingText = Label(root2, text="Order Type:",font=pageFont,bg="#ffe599")
+    shippingText.place(x=30,y=160)
+    orderTypeText = Label(root2, text=orderType.get(),font=pageFont,bg="#ffe599")
+    orderTypeText.place(x=185,y=160)
+    if orderType.get() == "Delivery":
+        addressText = Label(root2, text="Address:",font=pageFont,bg="#ffe599")
+        addressText.place(x=30,y=190)
+        customerAddress = Label(root2,text=addressEntry.get(),font=pageFont,bg="#ffe599")
+        customerAddress.place(x=185,y=190)
+        phoneText = Label(root2,text="Phone Number:",font=pageFont,bg="#ffe599")
+        phoneText.place(x=30,y=220)
+        customerPhoneNo = Label(root2,text=phoneEntry.get(),font=pageFont,bg="#ffe599")
+        customerPhoneNo.place(x=185,y=220)
+    embellishment = Label(root2, text="_____________________________________________________________________________________________________________________",bg="#ffe599")
+    embellishment.place(x=0,y=245)
+    itemHeader = Label(root2, text="Item",font=underlineFont,bg="#ffe599")
+    itemHeader.place(x=40,y=275)
+    qtyHeader = Label(root2, text="Qty",font=underlineFont,bg="#ffe599")
+    qtyHeader.place(x=330,y=275)
+    priceHeader = Label(root2, text="Price Per",font=underlineFont,bg="#ffe599")
+    priceHeader.place(x=460,y=275)
+
+    linecount = 1
+    if int(entry1.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[0],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry1.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(REGULAR_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry2.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[1],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry2.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(REGULAR_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry3.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[2],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry3.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(REGULAR_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry4.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[3],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry4.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(REGULAR_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry5.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[4],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry5.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(REGULAR_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry6.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[5],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry6.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(REGULAR_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry7.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[6],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry7.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(REGULAR_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry8.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[7],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry8.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(GOURMET_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry9.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[8],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry9.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(GOURMET_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry10.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[9],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry10.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(GOURMET_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry11.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[10],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry11.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(GOURMET_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if int(entry12.get()) > 0:
+        pizzaOutput = Label(root2,text=menuList[11],font=pageFont,bg="#ffe599")
+        pizzaOutput.place(x=20,y=(275+(30*linecount)))
+        qtyOutput = Label(root2,text=int(entry12.get()),font=pageFont,bg="#ffe599")
+        qtyOutput.place(x=340,y=(275+(30*linecount)))
+        priceOutput = Label(root2,text="$"+str(GOURMET_COST)+"0",font=pageFont,bg="#ffe599")
+        priceOutput.place(x=470,y=(275+(30*linecount)))
+        linecount+= 1
+    if orderType.get() == "Delivery":
+        deliveryText = Label(root2,text="Delivery Fee",font=pageFont,bg="#ffe599")
+        deliveryText.place(x=20,y=(275+(30*linecount)))
+        
     return
 
 
@@ -306,7 +461,8 @@ def findInvalids():
         errorText = Label(root, text="Invalid Pizza Amount.", bg="#ffe599", font=pageFont, fg="#ff0000")
         errorText.place(x=410,y=500)
 
-    if nameEntry.get() == "":
+    if (nameEntry.get() == "") or (nameEntry.get() == "Please Enter Name"):
+        nameEntry.delete(0, END)
         nameEntry.insert(0, "Please Enter Name")
         invalid = 1
 
@@ -318,7 +474,7 @@ def findInvalids():
             addressEntry.insert(0, "Invalid Shipping Address")
             invalid = 1
     elif orderType.get() == "":
-        errorText2 = Label(root, text="Please Select Shipping Option.", bg="#ffe599", font=pageFont, fg="#ff0000")
+        errorText2 = Label(root, text="Please Select Order Type.", bg="#ffe599", font=pageFont, fg="#ff0000")
         errorText2.place(x=390,y=530)
 
     if invalid != 1:
