@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 root = Tk()
 root.title("Tony's Pizza Order Form")
 root.config(bg="#ffe599")
-root.geometry("660x550")
+root.geometry("660x555")
 
 
 global REGULAR_COST
@@ -145,9 +145,185 @@ def close():
     root.quit()
     return
 
-def findInvalids():
-
+def createInvoice():
+    
     return
+
+
+def calcCost():
+    regularAmount = int(entry1.get()) + int(entry2.get()) + int(entry3.get()) + int(entry4.get()) + int(entry5.get()) + int(entry6.get()) + int(entry7.get())
+    gourmetAmount = int(entry8.get()) + int(entry9.get()) + int(entry10.get()) + int(entry11.get()) + int(entry12.get())
+    
+    global totalCost
+    totalCost = (regularAmount * REGULAR_COST) + (gourmetAmount * GOURMET_COST)
+    if orderType.get() == "Delivery":
+        totalCost += DELIVERY_COST
+
+    createInvoice()
+    return
+
+def findInvalids():
+    
+    entry1Var = entry1.get()
+    entry2Var = entry2.get()
+    entry3Var = entry3.get()
+    entry4Var = entry4.get()
+    entry5Var = entry5.get()
+    entry6Var = entry6.get()
+    entry7Var = entry7.get()
+    entry8Var = entry8.get()
+    entry9Var = entry9.get()
+    entry10Var = entry10.get()
+    entry11Var = entry11.get()
+    entry12Var = entry12.get()
+    invalid = 0
+    try:
+        entry1Var = int(entry1Var)
+        if (int(entry1Var) < 0) or (int(entry1Var) > 5):
+            entry1.delete(0, END)
+            entry1.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry1.delete(0, END)
+        entry1.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry2Var = int(entry2Var)
+        if (int(entry2Var) < 0) or (int(entry2Var) > 5):
+            entry2.delete(0, END)
+            entry2.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry2.delete(0, END)
+        entry2.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry3Var = int(entry3Var)
+        if (int(entry3Var) < 0) or (int(entry3Var) > 5):
+            entry3.delete(0, END)
+            entry3.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry3.delete(0, END)
+        entry3.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry4Var = int(entry4Var)
+        if (int(entry4Var) < 0) or (int(entry4Var) > 5):
+            entry4.delete(0, END)
+            entry4.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry4.delete(0, END)
+        entry4.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry5Var = int(entry5Var)
+        if (int(entry5Var) < 0) or (int(entry5Var) > 5):
+            entry5.delete(0, END)
+            entry5.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry5.delete(0, END)
+        entry5.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry6Var = int(entry6Var)
+        if (int(entry6Var) < 0) or (int(entry6Var) > 5):
+            entry6.delete(0, END)
+            entry6.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry6.delete(0, END)
+        entry6.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry7Var = int(entry7Var)
+        if (int(entry7Var) < 0) or (int(entry7Var) > 5):
+            entry7.delete(0, END)
+            entry7.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry7.delete(0, END)
+        entry7.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry8Var = int(entry8Var)
+        if (int(entry8Var) < 0) or (int(entry8Var) > 5):
+            entry8.delete(0, END)
+            entry8.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry8.delete(0, END)
+        entry8.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry9Var = int(entry9Var)
+        if (int(entry9Var) < 0) or (int(entry9Var) > 5):
+            entry9.delete(0, END)
+            entry9.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry9.delete(0, END)
+        entry9.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry10Var = int(entry10Var)
+        if (int(entry10Var) < 0) or (int(entry10Var) > 5):
+            entry10.delete(0, END)
+            entry10.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry10.delete(0, END)
+        entry10.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry11Var = int(entry11Var)
+        if (int(entry11Var) < 0) or (int(entry11Var) > 5):
+            entry11.delete(0, END)
+            entry11.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry11.delete(0, END)
+        entry11.insert(0, "Invalid")
+        invalid = 1
+    try:
+        entry12Var = int(entry12Var)
+        if (int(entry12Var) < 0) or (int(entry12Var) > 5):
+            entry12.delete(0, END)
+            entry12.insert(0, "Invalid")
+            invalid = 1
+    except:
+        entry12.delete(0, END)
+        entry12.insert(0, "Invalid")
+        invalid = 1
+
+    global pizzaAmount
+    pizzaAmount = int(entry1.get()) + int(entry2.get()) + int(entry3.get()) + int(entry4.get()) + int(entry5.get()) + int(entry6.get()) + int(entry7.get()) + int(entry8.get()) + int(entry9.get()) + int(entry10.get()) + int(entry11.get()) + int(entry12.get())
+    
+    if (pizzaAmount > 5) or (pizzaAmount < 1):
+        invalid = 1
+        errorText = Label(root, text="Invalid Pizza Amount.", bg="#ffe599", font=pageFont, fg="#ff0000")
+        errorText.place(x=410,y=500)
+
+    if nameEntry.get() == "":
+        nameEntry.insert(0, "Please Enter Name")
+        invalid = 1
+
+    if orderType.get() == "Delivery":
+        if phoneEntry.get() == "":
+            phoneEntry.insert(0, "Invalid Phone Number")
+            invalid = 1
+        if addressEntry.get() == "":
+            addressEntry.insert(0, "Invalid Shipping Address")
+            invalid = 1
+    elif orderType.get() == "":
+        errorText2 = Label(root, text="Please Select Shipping Option.", bg="#ffe599", font=pageFont, fg="#ff0000")
+        errorText2.place(x=390,y=530)
+
+    if invalid != 1:
+        calcCost()
+        return
 
 clearButton = Button(root, text="Clear", font=pageFont, bg="#e69138", fg="#ffffff", padx=18, pady=2, command=clearFields)
 clearButton.place(x=340,y=450)
