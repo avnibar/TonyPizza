@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter.font import Font
 from datetime import datetime
-import os.path
-#os.chdir('//internal.glendowie-college.school.nz/users/Home/Students/18222/Documents/prg python/12 PRG Avni')
+import os
+os.chdir('12 PRG Avni')
 
 root = Tk()
 root.title("Tony's Pizza Order Form")
@@ -116,7 +116,7 @@ addressEntry.place(x=500,y=340)
 phoneEntry = Entry(root, borderwidth=3, width=23)
 phoneEntry.place(x=500,y=390)
 
-logoFile = PhotoImage(os.path.join(os.path.dirname(__file__), 'pizzaLogo.png'))
+logoFile = PhotoImage(file="pizzaLogo.png")
 logoInput = Label(root, image=logoFile, bg="#ffe599")
 logoInput.place(x=460,y=20)
 
@@ -161,7 +161,7 @@ def createInvoice():
     root2=Toplevel(root)
     root2.title("Tony's Pizza Customer Order")
     root2.configure(bg="#ffe599")
-    root2.geometry("590x530")
+    root2.geometry("590x620")
 
     mainTitle = Label(root2, text="Tony's Pizza Company", font=titleFont, bg="#ffe599")
     mainTitle.place(x=72,y=0)
@@ -326,9 +326,9 @@ def createInvoice():
 
 
     newOrderButton = Button(root2, text="New Order",font=pageFont,bg="#e69138",fg="#ffffff", padx=6, pady=2, command=newOrder)
-    newOrderButton.place(x=150,y=(295+30*linecount))
+    newOrderButton.place(x=150,y=570)
     quitButton = Button(root2,text="Quit",font=pageFont,bg="#e69138",fg="#ffffff", padx=18, pady=2, command=close)
-    quitButton.place(x=350,y=(295+30*linecount))
+    quitButton.place(x=350,y=570)
 
     return
 
